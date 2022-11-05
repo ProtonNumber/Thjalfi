@@ -28,15 +28,18 @@ module thrustRing() {
 
 module boattailQuadrant() {
     radius = 110 ^ 2 / (53.8-37) + (53.8-37)/4;
-    rotate([180, 0, 0]) intersection() {
-        rotate_extrude() intersection() {
-            translate([-radius+53.8/2, 0, 0]) difference() {
-                circle(radius);
-                circle(radius - 1.2);
+    !difference() {
+        rotate([180, 0, 0]) intersection() {
+            rotate_extrude() intersection() {
+                translate([-radius+53.8/2, 0, 0]) difference() {
+                    circle(radius);
+                    circle(radius - 2);
+                }
+                square([53.8, 110]);
             }
-            square([53.8, 110]);
-        }
         translate([1.5, 1.5, 0]) cube([27, 27, 110]);
+        }   
+        translate([0, 0, -110]) cylinder(d=36.4, h = 35);
     }
 }
 
